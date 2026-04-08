@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Alex English Speaking</title>
+
+<style>
+body {
+  font-family: Arial;
+  background: #eef5ff;
+  text-align: center;
+}
+
+.header {
+  background: #2d4fd7;
+  color: white;
+  padding: 20px;
+  font-size: 24px;
+}
+
+.chat-box {
+  width: 80%;
+  margin: 20px auto;
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  height: 420px;
+  overflow-y: auto;
+}
+
+.alex {
+  text-align: left;
+  background: #eaf2ff;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.user {
+  text-align: right;
+  background: #2d4fd7;
+  color: white;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+input {
+  padding: 12px;
+  width: 60%;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #2d4fd7;
+  color: white;
+  cursor: pointer;
+}
+</style>
+
+</head>
+<body>
+
+<div class="header">ALEX ENGLISH SPEAKING</div>
+
+<div class="chat-box" id="chatBox">
+  <div class="alex">Hi! Ask me questions from Unit 1–20 😊</div>
+</div>
+
+<input id="input" placeholder="Type your question...">
+<button onclick="send()">Send</button>
+
+<script>
+
+const QA = {
+
+// ===== UNIT 1 =====
+"can you tell me about yourself":"My name is Lan. I'm in Class 5A. I live in the countryside.",
+"what’s your name":"My name is Lan.",
+"what is your name":"My name is Lan.",
+"which class are you in":"I'm in Class 5A.",
+"where do you live":"I live in the countryside.",
+"is it a big place":"Yes, it is.",
+"when is your birthday":"It's on May 10th.",
+"do you have a party on your birthday":"Yes, I do.",
+"what’s your favourite colour":"It's pink.",
+"what’s your favourite food":"It's a sandwich.",
+"what’s your favourite animal":"It's a dolphin.",
+"what’s your favourite sport":"It's football.",
+
+// ===== UNIT 2 =====
+"do you live in a house or a flat":"I live in a house.",
+"is it big or small":"It's big.",
+"how many rooms are there":"There are five rooms.",
+"what’s your address":"It's 123 Le Loi Street.",
+"is it near your school":"Yes, it is.",
+
+// ===== UNIT 3 =====
+"do you have any foreign friends":"Yes, I do.",
+"where are they from":"They are from Japan.",
+"what nationality are they":"They are Japanese.",
+"what are they like":"They are friendly.",
+"do you talk to them every day":"Yes, I do.",
+
+// ===== UNIT 4 =====
+"what do you usually do in your free time":"I read books.",
+"do you like reading books":"Yes, I do.",
+"what kind of books do you like":"I like comic books.",
+"what do you do at the weekend":"I play sports.",
+"do you play sports often":"Yes, I do.",
+
+// ===== UNIT 5 =====
+"what would you like to be":"I'd like to be a doctor.",
+"why do you want to be that":"Because I want to help people.",
+"do you like helping people":"Yes, I do.",
+"do you think it’s an interesting job":"Yes, I do.",
+
+// ===== UNIT 6 =====
+"where is your classroom":"It's on the first floor.",
+"is it on the first floor":"Yes, it is.",
+"is your classroom big":"Yes, it is.",
+"can you show me the way to the library":"Go straight and turn left.",
+"is it far from your classroom":"No, it isn't.",
+
+// ===== UNIT 7 =====
+"what school activities do you like":"I like playing football.",
+"why do you like it":"Because it's fun.",
+"do you play games at school":"Yes, I do.",
+"who do you play with":"I play with my friends.",
+
+// ===== UNIT 8 =====
+"where is your bag":"It's under the desk.",
+"where are your books":"They're on the desk.",
+"whose pen is this":"It's mine.",
+"is it yours or your friend’s":"It's mine.",
+
+// ===== UNIT 9 =====
+"were you outside yesterday":"Yes, I was.",
+"where did you go":"I went to the park.",
+"what did you do there":"I played games.",
+"did you play games":"Yes, I did.",
+"was it fun":"Yes, it was.",
+
+// ===== UNIT 10 =====
+"did you go on a school trip":"Yes, I did.",
+"did you take photos":"Yes, I did.",
+"did you enjoy it":"Yes, I did.",
+
+// ===== UNIT 11 =====
+"what did you do with your family last weekend":"I visited my grandparents.",
+"did you go out":"Yes, I did.",
+"did you have fun together":"Yes, I did.",
+
+// ===== UNIT 12 =====
+"what will you do":"I will visit my grandparents.",
+"will you decorate your house":"Yes, I will.",
+"will you visit your grandparents":"Yes, I will.",
+"what food will you eat":"I will eat banh chung.",
+
+// ===== UNIT 13 =====
+"what will you do on children’s day":"I will go to the park.",
+"will you have a party":"Yes, I will.",
+"what food will you have":"I will have cake.",
+"will you invite your friends":"Yes, I will.",
+
+// ===== UNIT 14 =====
+"how do you stay healthy":"I play sports.",
+"how often do you exercise":"I exercise every day.",
+"do you eat healthy food":"Yes, I do.",
+
+// ===== UNIT 15 =====
+"how are you today":"I'm fine, thank you.",
+"do you have any health problems":"No, I don't.",
+"what’s the matter":"I have a headache.",
+"did you see a doctor":"Yes, I did.",
+
+// ===== UNIT 16 =====
+"what’s the weather like today":"It's sunny.",
+"do you like sunny or rainy weather":"I like sunny weather.",
+"what’s your favourite season":"I like summer.",
+"why do you like it":"Because it's hot.",
+
+// ===== UNIT 17 =====
+"do you like reading stories":"Yes, I do.",
+"what’s your favourite story":"I like Cinderella.",
+"who is your favourite character":"Cinderella.",
+"can you tell me a short story":"Once upon a time, there was a girl.",
+
+// ===== UNIT 18 =====
+"how do you go to school":"I go to school by bike.",
+"do you go by bike or by bus":"I go by bike.",
+"which transport do you like best":"I like cars best.",
+"why do you like it":"Because they are fast.",
+
+// ===== UNIT 19 =====
+"do you like visiting new places":"Yes, I do.",
+"what place do you like best":"I like the beach.",
+"where is it":"It's in Da Nang.",
+"what can you do there":"I can swim.",
+
+// ===== UNIT 20 =====
+"summer is coming":"I will go on holiday.",
+"where will you go":"I will go to Nha Trang.",
+"who will you go with":"I will go with my family.",
+"will you take photos":"Yes, I will."
+};
+
+
+// ===== CHAT =====
+function send(){
+  let input=document.getElementById("input");
+  let text=input.value;
+  if(!text) return;
+
+  addUser(text);
+  input.value="";
+
+  let reply=getAnswer(text);
+  setTimeout(()=>addAlex(reply),300);
+}
+
+function addUser(t){
+  let d=document.createElement("div");
+  d.className="user";
+  d.innerText=t;
+  document.getElementById("chatBox").appendChild(d);
+}
+
+function addAlex(t){
+  let d=document.createElement("div");
+  d.className="alex";
+  d.innerText=t;
+  document.getElementById("chatBox").appendChild(d);
+}
+
+function getAnswer(text){
+  text=text.toLowerCase().trim();
+
+  for(let q in QA){
+    if(text.includes(q)){
+      return QA[q];
+    }
+  }
+
+  return "Please ask again 😊";
+}
+
+</script>
+
+</body>
+</html>
